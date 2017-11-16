@@ -1,3 +1,5 @@
+SHELL=/bin/bash
+
 lib_dir=$(base_dir)/lib
 
 rocketchip_stamp=$(base_dir)/lib/rocketchip.stamp
