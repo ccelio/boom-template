@@ -15,7 +15,7 @@ CONFIG ?= BoomConfig
 CFG_PROJECT ?= $(PROJECT)
 TB ?= TestDriver
 
-long_name = $(PROJECT).$(MODEL).$(CONFIG)
+long_name = $(PROJECT).$(CONFIG)
 
 SBT ?= java -Xmx2G -Xss8M -XX:MaxPermSize=256M -jar $(ROCKETCHIP_DIR)/sbt-launch.jar
 
