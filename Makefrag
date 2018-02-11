@@ -25,14 +25,14 @@ $(FIRRTL_JAR): $(call lookup_scala_srcs, $(ROCKETCHIP_DIR)/firrtl/src/main/scala
 	mkdir -p $(ROCKETCHIP_DIR)/lib
 	cp -p $(FIRRTL_JAR) $(ROCKETCHIP_DIR)/lib
 
-$(build_dir)/$(PROJECT).$(MODEL).$(CONFIG).fir: $(rocketchip_stamp) $(extra_stamps) $(call lookup_scala_srcs,$(base_dir)/src/main/scala) $(bootrom_img)
+$(build_dir)/$(PROJECT).$(CONFIG).fir: $(rocketchip_stamp) $(extra_stamps) $(call lookup_scala_srcs,$(base_dir)/src/main/scala) $(bootrom_img)
 	mkdir -p $(build_dir)
-	cd $(base_dir) && $(SBT) "run-main $(PROJECT).Generator $(CHISEL_ARGS) $(build_dir) $(PROJECT) $(MODEL) $(CFG_PROJECT) $(CONFIG)"
+	cd $(base_dir) && $(SBT) "runMain $(PROJECT).Generator $(CHISEL_ARGS) $(build_dir) $(PROJECT) $(MODEL) $(CFG_PROJECT) $(CONFIG)"
 
 # Compiling Verilog code may also generate a *.conf file.
 # EXTRA arguments allows for options such as black-boxing of the SeqMems.
 $(build_dir)/$(long_name).conf : $(build_dir)/$(long_name).v ;
-$(build_dir)/$(PROJECT).$(MODEL).$(CONFIG).v: $(build_dir)/$(PROJECT).$(MODEL).$(CONFIG).fir $(FIRRTL_JAR)
+$(build_dir)/$(PROJECT).$(CONFIG).v: $(build_dir)/$(PROJECT).$(CONFIG).fir $(FIRRTL_JAR)
 	$(FIRRTL) -i $< -o $@ -X verilog -faf $(build_dir)/$(notdir $(basename $@)).anno -ffaaf $(EXTRA_FIRRTL_ARGS)
 
 
