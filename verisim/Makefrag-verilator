@@ -32,4 +32,6 @@ VERILATOR_FLAGS := --top-module $(MODEL) \
   --output-split 20000 \
 	-Wno-STMTDLY --x-assign unique \
   -I$(base_dir)/testchipip/vsrc -I$(base_dir)/rocket-chip/vsrc \
-  -O3 -CFLAGS "$(CXXFLAGS) -DVERILATOR -DTEST_HARNESS=V$(MODEL) -include $(base_dir)/rocket-chip/csrc/verilator.h -include $(build_dir)/$(PROJECT).$(MODEL).$(CONFIG).plusArgs"
+  -O3 -CFLAGS "$(CXXFLAGS) -DVERILATOR -include $(base_dir)/rocket-chip/csrc/verilator.h"
+  #-O3 -CFLAGS "$(CXXFLAGS) -DVERILATOR -DTEST_HARNESS=V$(MODEL) -include $(base_dir)/rocket-chip/csrc/verilator.h -include $(build_dir)/$(PROJECT).$(MODEL).$(CONFIG).plusArgs"
+

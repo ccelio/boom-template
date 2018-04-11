@@ -27,7 +27,9 @@ include $(base_dir)/Makefrag
 include $(sim_dir)/Makefrag-verilator
 
 sim_csrcs += \
-	$(base_dir)/rocket-chip/csrc/emulator.cc
+	$(base_dir)/testchipip/csrc/verilator-harness.cc
+	#$(base_dir)/rocket-chip/csrc/emulator.cc
+
 
 model_dir = $(build_dir)/$(long_name)
 model_dir_debug = $(build_dir)/$(long_name).debug

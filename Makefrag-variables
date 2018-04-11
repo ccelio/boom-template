@@ -7,11 +7,13 @@ endif
 
 
 ROCKETCHIP_DIR=$(base_dir)/rocket-chip
-EXTRA_PACKAGES=boom
+EXTRA_PACKAGES=boom testchipip
 
-PROJECT ?= boom.system
+#PROJECT ?= boom.system
+PROJECT ?= serial
 MODEL ?= TestHarness
-CONFIG ?= BoomConfig
+CONFIG ?= BoomSerialConfig
+#CONFIG ?= BoomConfig
 CFG_PROJECT ?= $(PROJECT)
 TB ?= TestDriver
 
@@ -37,17 +39,17 @@ bootrom_img = $(base_dir)/rocket-chip/bootrom/bootrom.img
 sim_vsrcs = \
 	$(build_dir)/$(long_name).v \
 	$(base_dir)/rocket-chip/vsrc/AsyncResetReg.v \
-#	$(base_dir)/testchipip/vsrc/SimBlockDevice.v \
-#	$(base_dir)/testchipip/vsrc/SimSerial.v \
+	$(base_dir)/testchipip/vsrc/SimBlockDevice.v \
+#$(base_dir)/testchipip/vsrc/SimSerial.v \
 
 sim_csrcs = \
-	$(base_dir)/rocket-chip/csrc/SimDTM.cc \
-	$(base_dir)/rocket-chip/csrc/SimJTAG.cc \
 	$(base_dir)/rocket-chip/csrc/remote_bitbang.cc \
-#	$(base_dir)/testchipip/csrc/blkdev.cc \
-#	$(base_dir)/testchipip/csrc/SimBlockDevice.cc \
-#	$(base_dir)/testchipip/csrc/SimSerial.cc \
+	$(base_dir)/testchipip/csrc/blkdev.cc \
+	$(base_dir)/testchipip/csrc/SimBlockDevice.cc \
+	$(base_dir)/testchipip/csrc/SimSerial.cc \
+# $(base_dir)/rocket-chip/csrc/SimJTAG.cc \
 #	$(base_dir)/testchipip/csrc/verilator-harness.cc
+#	$(base_dir)/rocket-chip/csrc/SimDTM.cc \
 
 
 # Assembly/Benchmark Testing
