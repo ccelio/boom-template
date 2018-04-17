@@ -14,7 +14,7 @@ import boom.system.WithNBoomCores
 
 class WithBootROM extends Config((site, here, up) => {
   case BootROMParams => BootROMParams(
-    contentFileName = s"./bootrom/bootrom.rv${site(XLen)}.img")
+    contentFileName = s"./testchipip/bootrom/bootrom.rv${site(XLen)}.img")
 })
 
 object ConfigValName {
@@ -49,12 +49,12 @@ class WithSimBlockDevice extends Config((site, here, up) => {
 })
 
 class BoomSerialConfig extends Config(
+  new WithBootROM ++
   new WithExampleTop ++
   new DefaultBoomConfig ++ new WithNBoomCores(1) ++ new WithoutTLMonitors ++
   new BaseExampleConfig)
 
 class BaseExampleConfig extends Config(
-  new WithBootROM ++
   new freechips.rocketchip.system.DefaultConfig)
 
 class DefaultExampleConfig extends Config(
