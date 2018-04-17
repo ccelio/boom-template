@@ -7,3 +7,7 @@
 [submodule "torture"]
 	path = torture
 	url = https://github.com/ucb-bar/riscv-torture.git
+[submodule "testchipip"]
+	path = testchipip
+	url = git@github.com:ss2783/testchipip.git
+	branch = march-rc-bump

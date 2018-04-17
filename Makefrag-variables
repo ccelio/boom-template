@@ -7,11 +7,13 @@ endif
 
 
 ROCKETCHIP_DIR=$(base_dir)/rocket-chip
-EXTRA_PACKAGES=boom
+EXTRA_PACKAGES=boom testchipip
 
-PROJECT ?= boom.system
+#PROJECT ?= boom.system
+PROJECT ?= serial
 MODEL ?= TestHarness
-CONFIG ?= BoomConfig
+CONFIG ?= BoomSerialConfig
+#CONFIG ?= BoomConfig
 CFG_PROJECT ?= $(PROJECT)
 TB ?= TestDriver
 
@@ -19,8 +21,9 @@ long_name = $(PROJECT).$(MODEL).$(CONFIG)
 
 SBT ?= java -Xmx2G -Xss8M -XX:MaxPermSize=256M -jar $(ROCKETCHIP_DIR)/sbt-launch.jar
 
+ROCKET_CLASSES ?= "$(ROCKETCHIP_DIR)/target/scala-2.11/classes:$(ROCKETCHIP_DIR)/chisel3/target/scala-2.11/*"
 FIRRTL_JAR ?= $(ROCKETCHIP_DIR)/firrtl/utils/bin/firrtl.jar
-FIRRTL ?= java -Xmx2G -Xss8M -XX:MaxPermSize=256M -cp $(FIRRTL_JAR) firrtl.Driver
+FIRRTL ?= java -Xmx2G -Xss8M -XX:MaxPermSize=256M -cp "$(FIRRTL_JAR)":"$(ROCKET_CLASSES)" firrtl.Driver
 
 EXTRA_FIRRTL_ARGS ?=
 
@@ -36,18 +39,18 @@ bootrom_img = $(base_dir)/rocket-chip/bootrom/bootrom.img
 
 sim_vsrcs = \
 	$(build_dir)/$(long_name).v \
-	$(base_dir)/rocket-chip/vsrc/AsyncResetReg.v \
-#	$(base_dir)/testchipip/vsrc/SimBlockDevice.v \
-#	$(base_dir)/testchipip/vsrc/SimSerial.v \
+	$(base_dir)/rocket-chip/src/main/resources/vsrc/AsyncResetReg.v \
+	$(base_dir)/testchipip/vsrc/SimBlockDevice.v \
+#$(base_dir)/testchipip/vsrc/SimSerial.v \
 
 sim_csrcs = \
-	$(base_dir)/rocket-chip/csrc/SimDTM.cc \
-	$(base_dir)/rocket-chip/csrc/SimJTAG.cc \
-	$(base_dir)/rocket-chip/csrc/remote_bitbang.cc \
-#	$(base_dir)/testchipip/csrc/blkdev.cc \
-#	$(base_dir)/testchipip/csrc/SimBlockDevice.cc \
-#	$(base_dir)/testchipip/csrc/SimSerial.cc \
+	$(base_dir)/rocket-chip/src/main/resources/csrc/remote_bitbang.cc \
+	$(base_dir)/testchipip/csrc/blkdev.cc \
+	$(base_dir)/testchipip/csrc/SimBlockDevice.cc \
+	$(base_dir)/testchipip/csrc/SimSerial.cc \
+# $(base_dir)/rocket-chip/csrc/SimJTAG.cc \
 #	$(base_dir)/testchipip/csrc/verilator-harness.cc
+#	$(base_dir)/rocket-chip/csrc/SimDTM.cc \
 
 
 # Assembly/Benchmark Testing
