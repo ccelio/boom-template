@@ -8,7 +8,7 @@ git submodule update --init
 
 echo "cd rocket-chip/riscv-tools"
 cd rocket-chip/riscv-tools
-# We need to build a RV64G toolchain (not RVC which is the current riscv-tools default). 
+# We need to build a RV64G toolchain (not RVC which is the current riscv-tools default).
 # Therefore, let's make our own build script and then invoke it.
 f=build-rv64g.sh
 
@@ -33,7 +33,7 @@ then
 	echo "build_project riscv-openocd --prefix=\$RISCV --enable-remote-bitbang --enable-jtag_vpi --disable-werror" >> $f
 	echo "build_project riscv-tests --prefix=\$RISCV/riscv64-unknown-elf" >> $f
 	echo "" >> $f
-	echo "echo -e "\\nRISC-V Toolchain installation completed!"" >> $f
+	echo "echo \"RISC-V Toolchain installation completed!\"" >> $f
 else
 	echo "Using existing $f script."
 fi
