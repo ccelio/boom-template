@@ -23,10 +23,11 @@ debug: $(sim_debug)
 include $(base_dir)/Makefrag
 
 sim_vsrcs += \
-	$(base_dir)/rocket-chip/vsrc/TestDriver.v \
-	$(base_dir)/rocket-chip/vsrc/plusarg_reader.v \
-	$(base_dir)/rocket-chip/vsrc/SimDTM.v \
+	$(base_dir)/rocket-chip/src/main/resources/vsrc/TestDriver.v \
+	$(base_dir)/rocket-chip/src/main/resources/vsrc/plusarg_reader.v \
+	$(base_dir)/testchipip/vsrc/SimSerial.v \
 	$(build_dir)/$(long_name).behav_srams.v
+	#$(base_dir)/rocket-chip/src/main/resources/vsrc/SimDTM.v \
 
 VCS = vcs -full64
 
