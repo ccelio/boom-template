@@ -295,7 +295,7 @@ Processors are hard.
 ### VIM/bash isn't a development environment! How do I setup an IntelliJ IDE? ###
 
 Boom-template/rocket-chip/boom comes with a quite a project hierarchy that may be hard
-to keep track of in its entirity. Here's some steps to get started with IntelliJ. 
+to keep track of in its entirety. Here's some steps to get started with IntelliJ. 
 This section is a work-in-progress, so please share your own tips and hints on the 
 mailing list.
 
