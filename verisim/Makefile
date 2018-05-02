@@ -15,10 +15,12 @@ include $(base_dir)/Makefrag-variables
 
 sim = $(sim_dir)/simulator-$(PROJECT)-$(CONFIG)
 sim_debug = $(sim_dir)/simulator-$(PROJECT)-$(CONFIG)-debug
+sim_fsdb_debug = $(sim_dir)/simulator-$(PROJECT)-$(CONFIG)-fsdb-debug
 
 default: $(sim)
 
 debug: $(sim_debug)
+fsdb_debug: $(sim_fsdb_debug)
 
 CXXFLAGS := $(CXXFLAGS) -O1 -std=c++11 -I$(RISCV)/include -D__STDC_FORMAT_MACROS
 LDFLAGS := $(LDFLAGS) -L$(RISCV)/lib -Wl,-rpath,$(RISCV)/lib -L$(sim_dir) -lfesvr -lpthread
@@ -61,6 +63,9 @@ $(model_mk_debug): $(sim_vsrcs) $(INSTALLED_VERILATOR)
 
 $(sim_debug): $(model_mk_debug) $(sim_csrcs)
 	$(MAKE) VM_PARALLEL_BUILDS=1 -C $(build_dir)/$(long_name).debug -f V$(MODEL).mk
+
+$(sim_fsdb_debug):
+	$(error ERROR: verilator cannot produce fsdb files)
 
 list:
 	@grep '^[^#[:space:]].*:' Makefile

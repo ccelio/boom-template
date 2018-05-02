@@ -154,16 +154,30 @@ In either directory you can build and then run the `riscv-tests` using `make && 
 
 ### How do I get a waveform? ###
 
-The testharness/build-system is currently set up to provide a `vpd` waveform file.
+The testharness/build-system is currently set up to provide a `vpd` or a `fsdb` waveform file.
 
-In the `verisim` or `vsim` directories, instead of invoking `make`, you can invoke `make debug` 
-to build a waveform-output-enabled BOOM simulator. The simulator will now be suffixed with `-debug`.
-*Warning:* Verilator takes a very long time to compile with waveform output enabled.
+To get a `vpd` dump, go to the `verisim` or `vsim` directories and
+instead of invoking `make`, you can invoke `make debug` to build a
+vpd waveform-output-enabled BOOM simulator. The simulator will now be
+suffixed with `-debug`.  *Warning:* Verilator takes a very long time
+to compile with waveform output enabled.
 
-To run *all* of the riscv-tests with waveform output, you can invoke `make run-debug`.
+To run *all* of the riscv-tests with `vpd` waveform output, you can invoke `make run-debug`.
 
 Individually, you run a specific test as `make output/rv64ui-p-simple.out` to run a regular test 
-or `make output/rv64ui-p-simple.vpd` to generate a waveform.
+or `make output/rv64ui-p-simple.vpd` to generate a `vpd` waveform.
+
+To get a `fsdb` dump, go to the `vsim` directory and invoke `make fsdb_debug` 
+to build a fsdb waveform-output-enabled BOOM
+simulator. The simulator will now be suffixed with `fsdb-debug`.  Do
+not do this under the `verisim` directory.  You cannot generate a fsdb
+enabled Verilator simulator.
+
+You can generate `fsdb` waveforms only when running tests individually with commands of the form 
+`make output/rv64ui-p-simple.fsdb`.  To invoke the `verdi` verification tool, run 
+`make output/rv64ui-p-simple.verdi`.  If the required fsdb file is not available, this make 
+command will generate it first before starting verdi.
+
 
 Read the Makefile to find all of the special targets.
 
