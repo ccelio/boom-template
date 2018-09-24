@@ -10,7 +10,7 @@ ${base_dir}/lib/${pkg}.stamp: \$(call lookup_scala_srcs, ${pkg_dir}) \$(rocketch
 	rm -f ${pkg_dir}/lib
 	ln -s ${base_dir}/lib ${pkg_dir}/lib
 	cd ${pkg_dir} && \$(SBT) package
-	cp ${pkg_dir}/target/scala-2.11/*.jar ${base_dir}/lib
+	cp ${pkg_dir}/target/scala-2.12/*.jar ${base_dir}/lib
 	touch \$@
 MAKE
 done

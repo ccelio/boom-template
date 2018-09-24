@@ -17,9 +17,9 @@ TB ?= TestDriver
 
 long_name = $(PROJECT).$(MODEL).$(CONFIG)
 
-SBT ?= java -Xmx2G -Xss8M -jar $(ROCKETCHIP_DIR)/sbt-launch.jar
+SBT ?= java -Xmx2G -Xss8M -jar $(ROCKETCHIP_DIR)/sbt-launch.jar ++2.12.4
 
-ROCKET_CLASSES ?= "$(ROCKETCHIP_DIR)/target/scala-2.11/classes:$(ROCKETCHIP_DIR)/chisel3/target/scala-2.11/*"
+ROCKET_CLASSES ?= "$(ROCKETCHIP_DIR)/target/scala-2.12/classes:$(ROCKETCHIP_DIR)/chisel3/target/scala-2.12/*"
 FIRRTL_JAR ?= $(ROCKETCHIP_DIR)/firrtl/utils/bin/firrtl.jar
 FIRRTL ?= java -Xmx2G -Xss8M -cp "$(FIRRTL_JAR)":"$(ROCKET_CLASSES)" firrtl.Driver
 
