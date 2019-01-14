@@ -1,5 +1,7 @@
 # RISC-V BOOM Project Template
 
+**Disclaimer** Active development of the RISC-V BOOM Project Template is now located at https://github.com/riscv-boom/boom-template/
+
 This is a starter template for your own RISC-V BOOM project.
 
 [BOOM](https://github.com/ucb-bar/riscv-boom) is a superscalar, out-of-order 
