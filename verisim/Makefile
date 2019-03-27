@@ -71,4 +71,4 @@ list:
 	@grep '^[^#[:space:]].*:' Makefile
 
 clean:
-	rm -rf generated-src ./simulator-*
+	rm -rf generated-src ./simulator-* ../Makefrag.pkgs ../lib

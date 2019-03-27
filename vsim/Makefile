@@ -82,7 +82,7 @@ $(sim_fsdb_debug) : $(sim_vsrcs) $(sim_csrcs)
 	+define+DEBUG -debug_pp +define+FSDB -debug_all -debug_access+all
 
 clean:
-	rm -rf generated-src csrc simv-* ucli.key vc_hdrs.h
+	rm -rf generated-src csrc simv-* ucli.key vc_hdrs.h ../Makefrag.pkgs ../lib
 
 .PHONY: clean
 
